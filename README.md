@@ -3,26 +3,28 @@
 This the Tensorflow implementation of paper ``Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems"
 
 
-## Environment
-
-1. Python 3 
-2. Tensorflow 
-3. Gurobi
-4. Matlab
-
+## Prerequisites
+Here is the software environment we used
+1. Python 3.6 
+2. Tensorflow 1.12
+3. Gurobi 8.0.1
+4. Matlab R2017a
 
 ## Reproduce results steps
 
-To reproduce our results, follow the three steps:
-1. Prepare dataset, please refer to the details in the below section "Dataset"  
-2. Run the script channel_main_call.sh in terminal
-3. Read the results by running readres.py
+To reproduce our results, please follow the three steps:
+1. Prepare dataset following details in the below section "Dataset Preparation";  
+2. Run the script "channel_main_call.sh" in terminal;
+3. Read the results by running readres.py;
+
+## Dataset Preparation
+Following the instruction in 
 
 ## Built With
 
 * [DeepMIMO](https://www.deepmimo.net/) - for Dataset Generation
-
+* [L1AE](https://github.com/wushanshan/L1AE) - used a part code for model construction 
 
 ## Acknowledgments
 
-* Part code is from https://github.com/wushanshan/L1AE
+* We have used some code from https://github.com/wushanshan/L1AE for model construction and https://www.deepmimo.net/ for Dataset Generation.
