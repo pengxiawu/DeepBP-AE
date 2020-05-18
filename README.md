@@ -23,8 +23,7 @@ Following the instruction in
 ## Built With
 
 * [DeepMIMO](https://www.deepmimo.net/) - for Dataset Generation
-* [L1AE](https://github.com/wushanshan/L1AE) - used a part code for model construction 
 
 ## Acknowledgments
 
-* We have used some code from https://github.com/wushanshan/L1AE for model construction and https://www.deepmimo.net/ for Dataset Generation.
+* We have adopted a part code from https://github.com/wushanshan/L1AE for model construction.
