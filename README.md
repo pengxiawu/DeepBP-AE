@@ -25,7 +25,7 @@ You can prepare your own dataset by following :
 
 1. Generate the spatial channels following the instruction in https://www.deepmimo.net/ and using the parameters given in the paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems". 
 
-Also, you can skip step 1, download our used dataset from here https://drive.google.com/file/d/1Ccwh8XdW3AXNMQ62j6D5Ndd4qRVxTbja/view?usp=sharing
+  Also, you can skip step 1, download our used dataset from here https://drive.google.com/file/d/1Ccwh8XdW3AXNMQ62j6D5Ndd4qRVxTbja/view?usp=sharing
 
 2. Transform to beamspace channels by running the "./dataset/channel_beamspace.m" in Matlab.
 
