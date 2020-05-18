@@ -10,7 +10,7 @@ Here is the software environment we used
 3. Gurobi 8.0.1
 4. Matlab R2017a
 
-## Reproduce results steps
+## Get Started
 
 To reproduce our results, please follow the three steps:
 1. Prepare dataset following details in the below section "Dataset Preparation";  
