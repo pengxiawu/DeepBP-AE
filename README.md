@@ -15,7 +15,7 @@ Here is the software environment we used
 To reproduce our results, please follow the three steps:
 1. Prepare dataset following details in the below section "Dataset Preparation";  
 2. Run the script "channel_main_call.sh" in terminal;
-3. Read the results by running readres.py;
+3. Read the results by running "readres.py" in the folder utils;
 
 ## Dataset Preparation
 Following the instruction in 
