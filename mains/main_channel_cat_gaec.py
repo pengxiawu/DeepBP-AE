@@ -11,18 +11,18 @@ flags = tf.app.flags
 
 flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 9, "Number of measurements [10]")
-flags.DEFINE_integer("num_samples", 80000, "Number of total samples [10000]")
+flags.DEFINE_integer("num_samples", 50000, "Number of total samples [10000]")
 flags.DEFINE_integer("decoder_num_steps", 15,
                      "Depth of the decoder network [10]")
 flags.DEFINE_integer("batch_size", 128, "Batch size [128]")
 flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD [0.01]")
 flags.DEFINE_integer("max_training_epochs", 1000,
                      "Maximum number of training epochs [2e4]")
-flags.DEFINE_integer("display_interval", 10,
+flags.DEFINE_integer("display_interval", 1,
                      "Print the training info every [100] epochs")
-flags.DEFINE_integer("validation_interval", 5,
+flags.DEFINE_integer("validation_interval", 1,
                      "Compute validation loss every [10] epochs")
-flags.DEFINE_integer("max_steps_not_improve", 1,
+flags.DEFINE_integer("max_steps_not_improve", 5,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
 flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1gaec/",
