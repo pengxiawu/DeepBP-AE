@@ -1,10 +1,7 @@
-"""Train an autoencoder over synthetic datasets"""
 from __future__ import division
-from time import time
-from models.model_l1ae import L1AE
-from my_datasets import datasplit
-from utils.utils import omp_avg_err, CoSaMP_block_avg_err
-from baselines import l1_min, block_sparse_CoSaMP, omp_random
+from models.model_l1sae import L1AE
+from utils.my_datasets import datasplit
+from utils.utils import l1_min_avg_err
 
 import os
 import numpy as np
@@ -13,22 +10,22 @@ import tensorflow as tf
 flags = tf.app.flags
 
 flags.DEFINE_integer('input_dim', 256, "Input dimension [512]")
-flags.DEFINE_integer("emb_dim", 12, "Number of measurements [10]")
-flags.DEFINE_integer("num_samples", 40000, "Number of total samples [10000]")
-flags.DEFINE_integer("decoder_num_steps", 10,
+flags.DEFINE_integer("emb_dim", 9, "Number of measurements [10]")
+flags.DEFINE_integer("num_samples", 100000, "Number of total samples [10000]")
+flags.DEFINE_integer("decoder_num_steps", 15,
                      "Depth of the decoder network [10]")
 flags.DEFINE_integer("batch_size", 128, "Batch size [128]")
 flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD [0.01]")
 flags.DEFINE_integer("max_training_epochs", 1000,
                      "Maximum number of training epochs [2e4]")
-flags.DEFINE_integer("display_interval", 50,
+flags.DEFINE_integer("display_interval", 10,
                      "Print the training info every [100] epochs")
-flags.DEFINE_integer("validation_interval", 10,
+flags.DEFINE_integer("validation_interval", 5,
                      "Compute validation loss every [10] epochs")
-flags.DEFINE_integer("max_steps_not_improve", 5,
+flags.DEFINE_integer("max_steps_not_improve", 2,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/RES/0408test/",
+flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1sae/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
@@ -77,7 +74,7 @@ def merge_dict(a, b):
 for dataset_i in range(num_random_dataset):
 
     X_train, X_valid, X_test = datasplit(num_samples=num_samples,
-                                         train_ratio=0.8, valid_ratio=0.1)
+                                         train_ratio=0.96, valid_ratio=0.02)
 
     print(np.shape(X_train))
     print(np.shape(X_valid))
@@ -90,7 +87,7 @@ for dataset_i in range(num_random_dataset):
         print("---Dataset: %d, Experiment: %d---" % (dataset_i, experiment_i))
         sparse_AE = L1AE(sess, input_dim, emb_dim, decoder_num_steps)
 
-        print("Start training......")
+        print("Start training......emb_dim{}".format(emb_dim))
         sparse_AE.train(X_train, X_valid, batch_size, learning_rate,
                         max_training_epochs, display_interval,
                         validation_interval, max_steps_not_improve)
@@ -104,70 +101,25 @@ for dataset_i in range(num_random_dataset):
         file_path = checkpoint_dir + file_name
         np.save(file_path, learned_matrix)
         Y = X_test.dot(learned_matrix)
+        # Y += 0.01*np.random.normal(size=Y.shape)
         l1ae_l1_err, l1ae_l1_exact, l1ae_l1_solve = \
-            omp_avg_err(np.transpose(learned_matrix), Y, X_test)
-        # l1ae_cosamp_err, l1ae_cosamp_exact, _ = CoSaMP_block_avg_err(
-        #                                               np.transpose(learned_matrix), Y,
-        #                                               X_test, block_dim=1,
-        #                                               sparsity_level=3,
-        #                                               use_pos=False)
-        # l1ae_cosamp_err_pos, l1ae_cosamp_exact_pos, _ = CoSaMP_block_avg_err(
-        #                                                np.transpose(learned_matrix), Y,
-        #                                                X_test, block_dim=1,
-        #                                                sparsity_level=3,
-        #                                                use_pos=True)
+            l1_min_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
+        l1ae_l1_err_pos, l1ae_l1_exact_pos, _ = \
+            l1_min_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=True)
+
 
         res = {}
-        res['l1ae_omp_err'] = l1ae_l1_err
-        res['l1ae_omp_exact'] = l1ae_l1_exact
-        res['l1ae_omp_solve'] = l1ae_l1_solve
+        res['l1ae_l1_err'] = l1ae_l1_err
+        res['l1ae_l1_exact'] = l1ae_l1_exact
+        res['l1ae_l1_solve'] = l1ae_l1_solve
+        res['l1ae_l1_err_pos'] = l1ae_l1_err_pos
+        res['l1ae_l1_exact_pos'] = l1ae_l1_exact_pos
         merge_dict(results_dict, res)
         print(res)
 
-        # res['l1ae_cosamp_err'] = l1ae_cosamp_err
-        # res['l1ae_cosamp_exact'] = l1ae_cosamp_exact
-        # res['l1ae_cosamp_err_pos'] = l1ae_cosamp_err_pos
-        # res['l1ae_cosamp_exact_pos'] = l1ae_cosamp_exact_pos
-        # merge_dict(results_dict, res)
-        # print(res)
-
-        # # model based CoSaMP
-        # print("Start model-based CoSaMP......")
-        # t0 = time()
-        # res = block_sparse_CoSaMP(X_test, input_dim, emb_dim,
-        #                           block_dim=1, sparsity_level=3)
-        # t1 = time()
-        # print("Model-based CoSaMP takes %f secs") % (t1-t0)
-        # merge_dict(results_dict, res)
-
-        # l1 minimization
-        # print("Start l1-min......")
-        # t0 = time()
-        # res = l1_min(X_test, input_dim, emb_dim)
-        # t1 = time()
-        # print("L1-minimization takes {} sec.".format(t1 - t0))
-        # merge_dict(results_dict, res)
-        # print(res)
-
-        # OMP random
-        print("Start omp......")
-        t0 = time()
-        res = omp_random(X_test, input_dim, emb_dim)
-        t1 = time()
-        print("L1-minimization takes {} sec.".format(t1 - t0))
-        merge_dict(results_dict, res)
-        print(res)
-
-        # PCA
-        # print("Start PCA and l1-min......")
-        # t0 = time()
-        # res = PCA_l1(X_train, X_test, input_dim, emb_dim)
-        # t1 = time()
-        # print("PCA and l1-min takes %f secs") % (t1-t0)
-        # merge_dict(results_dict, res)
 
 # save results_dict
-file_name = ('input_%d_'+'depth_%d_'+'emb_%d.npy') \
+file_name = ('res'+'input_%d_'+'depth_%d_'+'emb_%d.npy') \
             % (input_dim, decoder_num_steps, emb_dim)
 file_path = checkpoint_dir + file_name
 np.save(file_path, results_dict)

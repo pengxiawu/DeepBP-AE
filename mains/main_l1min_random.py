@@ -1,20 +1,17 @@
-"""Train an autoencoder over synthetic datasets"""
 from __future__ import division
 from time import time
-from my_datasets import datasplit
-from scipy import sparse
-from utils.utils import l1_min_avg_err
-from baselines import l1_min
+from utils.my_datasets import datasplit
+from utils.baselines import l1_min
 import os
 import numpy as np
 import tensorflow as tf
 
 flags = tf.app.flags
 
-flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
+flags.DEFINE_integer('input_dim', 256, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
 flags.DEFINE_integer("num_samples", 100000, "Number of total samples [10000]")
-flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/RES/20200517_deepMIMOdataset_l1min_random_cat0/",
+flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/RES/20200517_deepMIMOdataset_l1min_random/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
@@ -65,23 +62,11 @@ for dataset_i in range(num_random_dataset):
     _, _, X_test = datasplit(num_samples=num_samples,
                              train_ratio=0.96,
                              valid_ratio=0.02)
-    x = X_test.todense()
-    #x = np.concatenate((x.clip(min=0), (-x).clip(min=0)), axis=1)
-    x = np.concatenate((x, np.zeros_like(x)), axis=1)
-    X_test = sparse.csr_matrix(x)
 
     print(np.shape(X_test))
 
     res = {}
 
-    # models based CoSaMP
-    # print("Start models-based CoSaMP......")
-    # t0 = time()
-    # res = block_sparse_CoSaMP(X_test, input_dim, emb_dim,
-    #                           block_dim, sparsity_level)
-    # t1 = time()
-    # print("Model-based CoSaMP takes %f secs") % (t1-t0)
-    # merge_dict(results_dict, res)
 
     # l1 minimization
     print("Start l1-min......")
@@ -91,15 +76,6 @@ for dataset_i in range(num_random_dataset):
     print("L1-minimization takes {} sec.".format(t1 - t0))
     merge_dict(results_dict, res)
     print(res)
-
-    # PCA
-    # print("Start PCA and l1-min......")
-    # t0 = time()
-    # res = PCA_l1(X_train, X_test, input_dim, emb_dim)
-    # t1 = time()
-    # print("PCA and l1-min takes %f secs") % (t1-t0)
-    # merge_dict(results_dict, res)
-
 
 # save results_dict
 file_name = ('resl1min_'+'input_%d_'+'depth_%d_'+'emb_%2d.npy') \

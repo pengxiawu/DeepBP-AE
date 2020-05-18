@@ -23,20 +23,3 @@ for i in range(len(files)):
 print(result_dict)
 
 
-# import matplotlib.pyplot as plt
-#
-# for idx, key in enumerate(result_dict.keys()):
-#     if 'exact' in key:
-#
-#         plt.plot(result_dict[key], label=key)
-#
-# plt.legend()
-# plt.grid()
-
-# for idx, key in enumerate(result_dict.keys()):
-#     if 'err' in key:
-#
-#         plt.plot(result_dict[key], label=key)
-#
-# plt.legend()
-# plt.grid()

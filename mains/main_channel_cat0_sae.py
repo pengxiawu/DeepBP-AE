@@ -1,8 +1,7 @@
-"""Train an autoencoder over synthetic datasets"""
 from __future__ import division
-from models.model_l1gae import L1AE
-from my_datasets import datasplit
-from utils.utils import l1_min_avg_err, OMP, lasso_solver
+from models.model_l1sae import L1AE
+from utils.my_datasets import datasplit
+from utils.utils import l1_min_avg_err
 from scipy import sparse
 import os
 import numpy as np
@@ -26,7 +25,7 @@ flags.DEFINE_integer("validation_interval", 5,
 flags.DEFINE_integer("max_steps_not_improve", 2,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1gae_cat0/",
+flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1sae_cat0/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
@@ -77,17 +76,14 @@ for dataset_i in range(num_random_dataset):
     X_train, X_valid, X_test = datasplit(num_samples=num_samples,
                                          train_ratio=0.96, valid_ratio=0.02)
     x = X_train.todense()
-    #x = np.concatenate((x.clip(min=0), (-x).clip(min=0)), axis=1)
     x = np.concatenate((x, np.zeros_like(x)), axis=1)
     X_train = sparse.csr_matrix(x)
 
     x = X_valid.todense()
-    #x = np.concatenate((x.clip(min=0), (-x).clip(min=0)), axis=1)
     x = np.concatenate((x, np.zeros_like(x)), axis=1)
     X_valid = sparse.csr_matrix(x)
 
     x = X_test.todense()
-    #x = np.concatenate((x.clip(min=0), (-x).clip(min=0)), axis=1)
     x = np.concatenate((x, np.zeros_like(x)), axis=1)
     X_test = sparse.csr_matrix(x)
 
@@ -123,18 +119,6 @@ for dataset_i in range(num_random_dataset):
             l1_min_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=True)
 
 
-        # l1ae_cosamp_err, l1ae_cosamp_exact, _ = CoSaMP_block_avg_err(
-        #                                               np.transpose(G), Y,
-        #                                               X_test, block_dim,
-        #                                                sparsity_level,
-        #                                               use_pos=False)
-        # l1ae_cosamp_err_pos, l1ae_cosamp_exact_pos, _ = CoSaMP_block_avg_err(
-        #                                                np.transpose(G), Y,
-        #                                                X_test, block_dim,
-        #                                                sparsity_level,
-        #                                                use_pos=True)
-
-
         res = {}
         res['ae_l1_err'] = l1ae_l1_err
         res['ae_l1_exact'] = l1ae_l1_exact
@@ -144,14 +128,6 @@ for dataset_i in range(num_random_dataset):
         merge_dict(results_dict, res)
         print(res)
 
-
-        # res['l1ae_cosamp_err'] = l1ae_cosamp_err
-        # res['l1ae_cosamp_exact'] = l1ae_cosamp_exact
-        # res['l1ae_cosamp_err_pos'] = l1ae_cosamp_err_pos
-        # res['l1ae_cosamp_exact_pos'] = l1ae_cosamp_exact_pos
-
-        # merge_dict(results_dict, res)
-        # # print(res)
 
 # save results_dict
 file_name = ('res'+'input_%d_'+'depth_%d_'+'emb_%2d.npy') \
