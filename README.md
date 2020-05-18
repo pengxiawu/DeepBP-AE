@@ -1,6 +1,6 @@
 # CSI-ComSensing-AE
 
-This the Tensorflow implementation of paper ``Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems"
+This the Tensorflow implementation of paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems"
 
 
 ## Prerequisites
@@ -13,12 +13,22 @@ Here is the software environment we used
 ## Get Started
 
 To reproduce our results, please follow the three steps:
+
 1. Prepare dataset following details in the below section "Dataset Preparation";  
+
 2. Run the script "channel_main_call.sh" in terminal;
+
 3. Read the results by running "readres.py" in the folder utils;
 
 ## Dataset Preparation
-Following the instruction in 
+You can prepare your own dataset by following :
+
+1. Generate the spatial channels following the instruction in https://www.deepmimo.net/ and using the parameters given in the paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems". 
+
+Also, you can skip step 1, download our used dataset from here https://drive.google.com/file/d/1Ccwh8XdW3AXNMQ62j6D5Ndd4qRVxTbja/view?usp=sharing
+
+2. Transform to beamspace channels by running the "./dataset/channel_beamspace.m" in Matlab.
+
 
 ## Built With
 
