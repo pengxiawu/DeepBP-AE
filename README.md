@@ -1,87 +1,36 @@
-# CSI-sensing-l1gae
+# CSI-ComSensing-AE
 
-One Paragraph of project description goes here
+This the Tensorflow implementation of paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems"
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Prerequisites
+Here is the software environment we used
+1. Python 3.6 
+2. Tensorflow 1.12
+3. Gurobi 8.0.1
+4. Matlab R2017a
 
-### Prerequisites
+## Get Started
 
-What things you need to install the software and how to install them
+To reproduce our results, please follow the three steps:
 
-```
-Give examples
-```
+1. Prepare dataset following the details in the below section "Dataset Preparation";  
 
-### Installing
+2. Run the script "channel_main_call.sh" in terminal;
 
-A step by step series of examples that tell you how to get a development env running
+3. Read the results by running "readres.py" in the folder utils;
 
-Say what the step will be
+### Dataset Preparation
+You can prepare your own dataset by following :
 
-```
-Give the example
-```
+1. Generate the spatial channels following the instruction on [DeepMIMO](https://www.deepmimo.net/) and using the parameters given in the paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems". Also, you can skip this step 1 and directly download our used dataset from [this link](https://drive.google.com/file/d/1Ccwh8XdW3AXNMQ62j6D5Ndd4qRVxTbja/view?usp=sharing).
 
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+2. Access the generated spatial channel vectors and transform to beamspace channels by running the Matlab Script "./dataset/beamspace_channels.m".
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* [DeepMIMO](https://www.deepmimo.net/) - for Dataset Generation
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* We have adopted a part code from [L1AE](https://github.com/wushanshan/L1AE) for model construction.
