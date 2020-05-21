@@ -25,7 +25,7 @@ flags.DEFINE_integer("validation_interval", 5,
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "results/20200519_deepMIMOdataset_l1gae_cat0/",
+flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1gae_cat0/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
