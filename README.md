@@ -18,9 +18,9 @@ Or If you perfer to start from scatch, follow the steps below:
 
 1. Prepare deepMIMO dataset. Details are given in the following section "Dataset Preparation";  
 
-2. Train the autoencoder models and obtain the data-driven measurement matrix by running any python files named starting with 'main'. Please feel free to play around with changing the default parameters. 
+2. Train the autoencoder models and obtain the data-driven measurement matrix by running any python file named starting with 'main'. Please feel free to play around with changing the default parameters. 
 
-3. Read the results by running "readres.py" in the folder utils;
+3. Read the results by running "./readresult/readres.py" in the folder utils;
 
 ### Dataset Preparation
 You can prepare your own dataset by following :
