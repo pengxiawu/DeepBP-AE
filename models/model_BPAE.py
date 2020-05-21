@@ -7,8 +7,8 @@ from utils.utils import prepareSparseTensor
 import numpy as np
 import tensorflow as tf
 
-class L1AE(object):
-    def __init__(self, sess, input_dim, emb_dim, decoder_num_steps):
+class BPAE(object):
+    def __init__(self, sess, input_dim, emb_dim, decoder_num_steps, decoder_type):
         self.sess = sess
         self.input_dim = input_dim
         self.emb_dim = emb_dim
@@ -27,7 +27,6 @@ class L1AE(object):
         self.encode_shape_placeholder = tf.placeholder("int64", [2], name="encode_shape")
         self.encode = tf.sparse_tensor_dense_matmul(self.input_x,
                                                     self.encoder_weight)
-                      # + 0.01*tf.random_normal(self.encode_shape_placeholder)
         # decode by simulating decoder_num_steps projected subgradient updates
         self.step_size = tf.Variable(1.0)
         self.noise = tf.Variable(0.1)
@@ -58,7 +57,6 @@ class L1AE(object):
                     + tf.matmul(y_t, W, transpose_b=True) \
                     + (tf.matmul(tf.matmul(tf.sign(x), W), W,
                                  transpose_b=True) - tf.sign(x)) * (step_size / (i + 1))
-                    # - tf.matmul(self.noise*tf.random_normal(self.encode_shape_placeholder), W, transpose_b=True)
                 y_t = tf.matmul(x, W)
                 x = tf.layers.batch_normalization(x, axis=1)
             x = tf.nn.relu(x)
@@ -72,34 +70,39 @@ class L1AE(object):
                     + tf.matmul(y_t, W, transpose_b=True) \
                     + (tf.matmul(tf.matmul(tf.sign(x), W), W,
                                  transpose_b=True) - tf.sign(x)) * (step_size / (i + 1))
-                    # - tf.matmul(self.noise*tf.random_normal(self.encode_shape_placeholder), W, transpose_b=True)
                 y_t = tf.matmul(x, W)
                 x = tf.layers.batch_normalization(x, axis=1)
             x_hat = tf.nn.relu(x) - tf.nn.relu(-x)
             return x_hat
 
-        self.pred = decode_subgrad_l1gae(self.encode, self.encoder_weight,
-                                   self.decoder_num_steps, self.step_size)
+        if decoder_type== 'GAE':
+            self.pred = decode_subgrad_l1gae(self.encode, self.encoder_weight,
+                                       self.decoder_num_steps, self.step_size)
+        elif decoder_type== 'SAE':
+            self.pred = decode_subgrad_l1sae(self.encode, self.encoder_weight,
+                                             self.decoder_num_steps, self.step_size)
+        elif decoder_type== 'SAEC':
+            self.pred = decode_subgrad_l1saec(self.encode, self.encoder_weight,
+                                             self.decoder_num_steps, self.step_size)
+        elif decoder_type== 'GAEC':
+            self.pred = decode_subgrad_l1gaec(self.encode, self.encoder_weight,
+                                             self.decoder_num_steps, self.step_size)
+
         # define the squared loss
         self.sq_loss = tf.reduce_mean(tf.pow(tf.sparse_add(self.input_x,
                                       -self.pred), 2))*self.input_dim
-        #self.regularizer = tf.norm(tf.eye(self.input_dim) - tf.matmul(self.encoder_weight,
-        #                                                               self.encoder_weight,
-        #                                                               transpose_b=True))
-        #self.loss = self.sq_loss + self.regularizer
         self.learning_rate = tf.placeholder("float", [])
         self.sq_optim = tf.train.GradientDescentOptimizer(
                                      self.learning_rate).minimize(self.sq_loss)
-        # self.sq_optim = tf.train.AdamOptimizer(self.learning_rate).minimize(self.sq_loss)
 
     def train(self, X_train, X_valid, batch_size, learning_rate,
               max_training_epochs=2e4, display_interval=1e2,
               validation_interval=10, max_steps_not_improve=5):
         """Perform training on the model
         Args:
-            max_training_epochs [2e4]: stop training after 2e4 epochs.
-            display_interval [100]: print the training info every 100 epochs.
-            validation_interval [10]: compute validation loss every 10 epochs.
+            max_training_epochs [1000]: stop training after 1000 epochs.
+            display_interval [5]: print the training info every 5 epochs.
+            validation_interval [5]: compute validation loss every 5 epochs.
             max_steps_not_improve [5]: stop training when the validation loss
                                 does not improve for 5 validation_intervals.
         """

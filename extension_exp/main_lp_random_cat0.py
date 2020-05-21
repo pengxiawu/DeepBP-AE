@@ -1,7 +1,7 @@
 from __future__ import division
 from time import time
-from utils.my_generated_access import datasplit
-from utils.utils import l1_min_avg_err
+from utils.access_my_generated_data import datasplit
+from utils.utils import LP_BP_avg_err
 from scipy import sparse
 import os
 import numpy as np
@@ -58,8 +58,8 @@ def l1_min(X, input_dim, emb_dim):
     G = np.random.randn(input_dim, emb_dim)/np.sqrt(emb_dim)
     np.save(checkpoint_dir+'Gaussian_{}x{}.npy'.format(emb_dim, input_dim), G)
     Y = X.dot(G) # sparse.csr_matrix.dot
-    g_err, g_exact, _ = l1_min_avg_err(np.transpose(G), Y, X, use_pos=False)
-    g_err_pos, g_exact_pos, _ = l1_min_avg_err(np.transpose(G), Y, X, use_pos=True)
+    g_err, g_exact, _ = LP_BP_avg_err(np.transpose(G), Y, X, use_pos=False)
+    g_err_pos, g_exact_pos, _ = LP_BP_avg_err(np.transpose(G), Y, X, use_pos=True)
 
     res = {}
     res['l1_g_err'] = g_err

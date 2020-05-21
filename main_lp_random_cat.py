@@ -1,17 +1,18 @@
 from __future__ import division
 from time import time
-from utils.deepMIMO_access import datasplit
-from utils.baselines import l1_min
+from utils.access_deepMIMO_data import datasplit
+from scipy import sparse
+from utils.baselines import LP_BP
 import os
 import numpy as np
 import tensorflow as tf
 
 flags = tf.app.flags
 
-flags.DEFINE_integer('input_dim', 256, "Input dimension [512]")
+flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
 flags.DEFINE_integer("num_samples", 50000, "Number of total samples [10000]")
-flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1min_random/",
+flags.DEFINE_string("checkpoint_dir", "./results/20200517_deepMIMOdataset_l1min_random_cat/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
@@ -53,20 +54,24 @@ for dataset_i in range(num_random_dataset):
     _, _, X_test = datasplit(num_samples=num_samples,
                              train_ratio=0.96,
                              valid_ratio=0.02)
+    x = X_test.todense()
+    x = np.concatenate((x.clip(min=0), (-x).clip(min=0)), axis=1)
+    #x = np.concatenate((x, np.zeros_like(x)), axis=1)
+    X_test = sparse.csr_matrix(x)
 
     print(np.shape(X_test))
 
     res = {}
 
-
     # l1 minimization
     print("Start l1-min......")
     t0 = time()
-    res = l1_min(X_test, input_dim, emb_dim)
+    res = LP_BP(X_test, input_dim, emb_dim)
     t1 = time()
     print("L1-minimization takes {} sec.".format(t1 - t0))
     merge_dict(results_dict, res)
     print(res)
+
 
 # save results_dict
 file_name = ('resl1min_'+'input_%d_'+'emb_%02d.npy') \

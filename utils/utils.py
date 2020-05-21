@@ -14,7 +14,7 @@ def prepareSparseTensor(input_csrMat):
     return batch_indices, batch_values, np.array(input_csrMat.shape)
 
 
-def l1_min_err(A, y, true_x):
+def lp_bp_err(A, y, true_x):
     """
     Solve min_x ||x||_1 s.t. Ax=y, and compute err = ||x-true_x||_2.
     To convert it to the form of an LP:
@@ -47,7 +47,7 @@ def l1_min_err(A, y, true_x):
     return temp_err, res[:input_dim]
 
 
-def l1_min_pos(A, y, true_x):
+def lp_bp_pos(A, y, true_x):
     """
     Solve min_x sum_ix_i s.t. Ax=y, x_i>= 0 and compute err = ||x-true_x||_2
     """
@@ -73,7 +73,7 @@ def l1_min_pos(A, y, true_x):
     return temp_err, res[:input_dim]
 
 
-def l1_min_avg_err(A, Y, true_X, use_pos=False, eps=1e-8):
+def LP_BP_avg_err(A, Y, true_X, use_pos=False, eps=1e-8):
     """
     Run l1_min for each sample, and compute the RMSE.
     true_X is a 2D csr_matrix with shape=(num_sample, input_dim).
@@ -88,9 +88,9 @@ def l1_min_avg_err(A, Y, true_X, use_pos=False, eps=1e-8):
         x = true_X[i, :].toarray().reshape(-1,)
         try:
             if use_pos:
-                temp_err, Res = l1_min_pos(A, y, x)
+                temp_err, Res = lp_bp_pos(A, y, x)
             else:
-                temp_err, Res = l1_min_err(A, y, x)
+                temp_err, Res = lp_bp_err(A, y, x)
             if temp_err < eps:
                 num_exact += 1
             err += temp_err**2  # squared error

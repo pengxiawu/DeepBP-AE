@@ -1,7 +1,7 @@
 from __future__ import division
-from models.model_l1gae import L1AE
-from utils.deepMIMO_access import datasplit
-from utils.utils import l1_min_avg_err
+from models.model_BPAE import BPAE
+from utils.access_deepMIMO_data import datasplit
+from utils.utils import LP_BP_avg_err
 
 import os
 import numpy as np
@@ -9,23 +9,24 @@ import tensorflow as tf
 
 flags = tf.app.flags
 
-flags.DEFINE_integer('input_dim', 256, "Input dimension")
-flags.DEFINE_integer("emb_dim", 9, "Number of measurements")
-flags.DEFINE_integer("num_samples", 50000, "Number of total samples")
+flags.DEFINE_string("decoder_type", "SAE", "choose one from [GAE, GAEC, SAE, SAEC]")
+flags.DEFINE_integer('input_dim', 256, "Input dimension [512]")
+flags.DEFINE_integer("emb_dim", 9, "Number of measurements [10]")
+flags.DEFINE_integer("num_samples", 50000, "Number of total samples [10000]")
 flags.DEFINE_integer("decoder_num_steps", 15,
-                     "Depth of the decoder network")
-flags.DEFINE_integer("batch_size", 128, "Batch size")
-flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD")
+                     "Depth of the decoder network [10]")
+flags.DEFINE_integer("batch_size", 128, "Batch size [128]")
+flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD [0.01]")
 flags.DEFINE_integer("max_training_epochs", 1000,
-                     "Maximum number of training epochs")
+                     "Maximum number of training epochs [2e4]")
 flags.DEFINE_integer("display_interval", 5,
-                     "Print the training info every [5] epochs")
+                     "Print the training info every [100] epochs")
 flags.DEFINE_integer("validation_interval", 5,
-                     "Compute validation loss every [5] epochs")
+                     "Compute validation loss every [10] epochs")
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
-                      does not improve for [1] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1gae/",
+                      does not improve for [5] validation_intervals")
+flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1sae/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
@@ -37,6 +38,7 @@ FLAGS = flags.FLAGS
 
 
 # model parameters
+decoder_type = FLAGS.decoder_type
 input_dim = FLAGS.input_dim
 emb_dim = FLAGS.emb_dim
 num_samples = FLAGS.num_samples
@@ -85,24 +87,24 @@ for dataset_i in range(num_random_dataset):
         #config.gpu_options.allow_growth = True
         sess = tf.Session(config=config)
         print("---Dataset: %d, Experiment: %d---" % (dataset_i, experiment_i))
-        sparse_AE = L1AE(sess, input_dim, emb_dim, decoder_num_steps)
+        BP_AE = BPAE(sess, input_dim, emb_dim, decoder_num_steps, decoder_type)
 
         print("Start training......emb_dim{:02d}".format(emb_dim))
-        sparse_AE.train(X_train, X_valid, batch_size, learning_rate,
-                        max_training_epochs, display_interval,
-                        validation_interval, max_steps_not_improve)
+        BP_AE.train(X_train, X_valid, batch_size, learning_rate,
+                    max_training_epochs, display_interval,
+                    validation_interval, max_steps_not_improve)
         # evaluate the autoencoder
-        test_sq_loss = sparse_AE.inference(X_test, batch_size)
+        test_sq_loss = BP_AE.inference(X_test, batch_size)
         print("test_error is: ", test_sq_loss)
 
-        learned_matrix = sparse_AE.sess.run(sparse_AE.encoder_weight)
+        learned_matrix = BP_AE.sess.run(BP_AE.encoder_weight)
         file_name = ('matrix' + 'input_%d_' + 'depth_%d_' + 'emb_%02d.npy') \
                     % (input_dim, decoder_num_steps, emb_dim)
         file_path = checkpoint_dir + file_name
         np.save(file_path, learned_matrix)
         Y = X_test.dot(learned_matrix)
         l1ae_l1_err, l1ae_l1_exact, l1ae_l1_solve = \
-            l1_min_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
+            LP_BP_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
 
 
         res = {}
@@ -111,6 +113,7 @@ for dataset_i in range(num_random_dataset):
         res['l1ae_l1_solve'] = l1ae_l1_solve
         merge_dict(results_dict, res)
         print(res)
+
 
 # save results_dict
 file_name = ('res'+'input_%d_'+'depth_%d_'+'emb_%02d.npy') \
