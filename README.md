@@ -1,4 +1,4 @@
-# CSI-ComSensing-AE
+# DeepBP-AE
 
 This the Tensorflow implementation of paper "Acquiring Measurement Matrices via Model-Based Deep Learning for Sparse Channel Estimation in mmWave Massive MIMO Systems"
 
