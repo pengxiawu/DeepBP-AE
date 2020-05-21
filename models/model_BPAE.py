@@ -31,7 +31,7 @@ class BPAE(object):
         self.step_size = tf.Variable(1.0)
         self.noise = tf.Variable(0.1)
 
-        def decode_subgrad_l1saec(x, W, num_steps, step_size):
+        def decode_subgrad_bpsaec(x, W, num_steps, step_size):
             x = tf.matmul(x, W, transpose_b=True)
             for i in range(num_steps):
                 x = x + (tf.matmul(tf.matmul(tf.sign(x), W), W,
@@ -40,7 +40,7 @@ class BPAE(object):
             x = tf.nn.relu(x)
             return x  # The output layer
 
-        def decode_subgrad_l1sae(x, W, num_steps, step_size):
+        def decode_subgrad_bpsae(x, W, num_steps, step_size):
             x = tf.matmul(x, W, transpose_b=True)
             for i in range(num_steps):
                 x = x + (tf.matmul(tf.matmul(tf.sign(x), W), W,
@@ -49,7 +49,7 @@ class BPAE(object):
             x_hat = tf.nn.relu(x) - tf.nn.relu(-x)
             return x_hat
 
-        def decode_subgrad_l1gaec(x, W, num_steps, step_size):
+        def decode_subgrad_bpgaec(x, W, num_steps, step_size):
             x = tf.matmul(x, W, transpose_b=True)
             y_t = self.encode
             for i in range(num_steps):
@@ -62,7 +62,7 @@ class BPAE(object):
             x = tf.nn.relu(x)
             return x
 
-        def decode_subgrad_l1gae(x, W, num_steps, step_size):
+        def decode_subgrad_bpgae(x, W, num_steps, step_size):
             x = tf.matmul(x, W, transpose_b=True)
             y_t = self.encode
             for i in range(num_steps):
@@ -76,16 +76,16 @@ class BPAE(object):
             return x_hat
 
         if decoder_type== 'GAE':
-            self.pred = decode_subgrad_l1gae(self.encode, self.encoder_weight,
+            self.pred = decode_subgrad_bpgae(self.encode, self.encoder_weight,
                                        self.decoder_num_steps, self.step_size)
         elif decoder_type== 'SAE':
-            self.pred = decode_subgrad_l1sae(self.encode, self.encoder_weight,
+            self.pred = decode_subgrad_bpsae(self.encode, self.encoder_weight,
                                              self.decoder_num_steps, self.step_size)
         elif decoder_type== 'SAEC':
-            self.pred = decode_subgrad_l1saec(self.encode, self.encoder_weight,
+            self.pred = decode_subgrad_bpsaec(self.encode, self.encoder_weight,
                                              self.decoder_num_steps, self.step_size)
         elif decoder_type== 'GAEC':
-            self.pred = decode_subgrad_l1gaec(self.encode, self.encoder_weight,
+            self.pred = decode_subgrad_bpgaec(self.encode, self.encoder_weight,
                                              self.decoder_num_steps, self.step_size)
 
         # define the squared loss
