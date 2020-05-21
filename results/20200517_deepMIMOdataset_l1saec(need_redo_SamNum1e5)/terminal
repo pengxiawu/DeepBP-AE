@@ -1,0 +1,530 @@
+/bin/bash  /home/lab2255/Mycode/CSIC/channel_main_call.sh 
+(handson-ml) lab2255@optiplex-5060:~/Mycode/CSIC$ /bin/bash  /home/lab2255/Mycode/CSIC/channel_main_call.sh 
+Traceback (most recent call last):
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_flag.py", line 181, in _parse
+    return self.parser.parse(argument)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_argument_parser.py", line 152, in parse
+    val = self.convert(argument)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_argument_parser.py", line 265, in convert
+    return int(argument, base)
+ValueError: invalid literal for int() with base 10: '--emb_dim'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "main_channel_cat_saec.py", line 40, in <module>
+    input_dim = FLAGS.input_dim
+  File "/home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/platform/flags.py", line 84, in __getattr__
+    wrapped(_sys.argv)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_flagvalues.py", line 626, in __call__
+    unknown_flags, unparsed_args = self._parse_args(args, known_only)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_flagvalues.py", line 774, in _parse_args
+    flag.parse(value)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_flag.py", line 166, in parse
+    self.value = self._parse(argument)
+  File "/home/lab2255/.local/lib/python3.6/site-packages/absl/flags/_flag.py", line 184, in _parse
+    'flag --%s=%s: %s' % (self.name, argument, e))
+absl.flags._exceptions.IllegalFlagValueError: flag --emb_dim=--emb_dim: invalid literal for int() with base 10: '--emb_dim'
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 13:26:05.903806 139828346038080 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 13:26:05.904273: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 13:26:05.926299: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 13:26:05.926639: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x562342c57dd0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 13:26:05.926655: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 13:26:05.927612: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 13:26:05.927625: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 13:26:05.927636: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 13:26:05.927986 139828346038080 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 13:26:05.929598 139828346038080 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 13:26:05.934392 139828346038080 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 13:26:05.941264 139828346038080 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 13:26:05.942197 139828346038080 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 13:26:06.155881 139828346038080 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 13:26:06.172280 139828346038080 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim9
+W0518 13:26:06.755388 139828346038080 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.417650 ValidSqErr: 0.214646 StepSize: 0.283405
+Epoch: 00005 TrainSqErr: 0.116179 ValidSqErr: 0.119029 StepSize: 0.308573
+Epoch: 00010 TrainSqErr: 0.089693 ValidSqErr: 0.095703 StepSize: 0.353971
+Epoch: 00015 TrainSqErr: 0.076484 ValidSqErr: 0.076846 StepSize: 0.394080
+Epoch: 00020 TrainSqErr: 0.069541 ValidSqErr: 0.072508 StepSize: 0.407775
+Epoch: 00025 TrainSqErr: 0.065922 ValidSqErr: 0.067127 StepSize: 0.402913
+Epoch: 00030 TrainSqErr: 0.060669 ValidSqErr: 0.062217 StepSize: 0.411983
+Epoch: 00035 TrainSqErr: 0.054182 ValidSqErr: 0.057942 StepSize: 0.412675
+Epoch: 00040 TrainSqErr: 0.052220 ValidSqErr: 0.056152 StepSize: 0.412818
+Epoch: 00045 TrainSqErr: 0.051909 ValidSqErr: 0.056177 StepSize: 0.412001
+Epoch: 00050 TrainSqErr: 0.050555 ValidSqErr: 0.057131 StepSize: 0.399832
+Optimization Finished!
+Training takes 51 epochs in 282.645590 secs
+Training loss: 0.050555
+Validation loss: 0.057131
+test_error is:  0.055585296203692756
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.4315332915429373, 'ae_l1_exact': 0.616, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 0.14099425882818614, 'ae_l1_exact_pos': 0.9225}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 13:31:37.956974 140502143412032 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 13:31:37.957441: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 13:31:37.962974: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 13:31:37.963336: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ce365e81f0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 13:31:37.963363: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 13:31:37.964383: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 13:31:37.964400: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 13:31:37.964432: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 13:31:37.965099 140502143412032 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 13:31:37.966878 140502143412032 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 13:31:37.971642 140502143412032 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 13:31:37.978341 140502143412032 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 13:31:37.979183 140502143412032 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 13:31:38.190372 140502143412032 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 13:31:38.207312 140502143412032 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim12
+W0518 13:31:38.776106 140502143412032 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.367015 ValidSqErr: 0.194167 StepSize: 0.290533
+Epoch: 00005 TrainSqErr: 0.081684 ValidSqErr: 0.081349 StepSize: 0.226226
+Epoch: 00010 TrainSqErr: 0.056488 ValidSqErr: 0.055464 StepSize: 0.239076
+Epoch: 00015 TrainSqErr: 0.041140 ValidSqErr: 0.039805 StepSize: 0.255861
+Epoch: 00020 TrainSqErr: 0.031962 ValidSqErr: 0.031070 StepSize: 0.268399
+Epoch: 00025 TrainSqErr: 0.027418 ValidSqErr: 0.027103 StepSize: 0.273525
+Epoch: 00030 TrainSqErr: 0.025474 ValidSqErr: 0.024853 StepSize: 0.279408
+Epoch: 00035 TrainSqErr: 0.024414 ValidSqErr: 0.023998 StepSize: 0.283991
+Epoch: 00040 TrainSqErr: 0.024088 ValidSqErr: 0.023932 StepSize: 0.284812
+Epoch: 00045 TrainSqErr: 0.023878 ValidSqErr: 0.023942 StepSize: 0.286243
+Epoch: 00050 TrainSqErr: 0.023982 ValidSqErr: 0.024377 StepSize: 0.285342
+Optimization Finished!
+Training takes 51 epochs in 285.476048 secs
+Training loss: 0.023982
+Validation loss: 0.024377
+test_error is:  0.024955921744306882
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.1153878798633845, 'ae_l1_exact': 0.9465, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 0.05032585321174753, 'ae_l1_exact_pos': 0.9775}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 13:37:18.538187 140306778916672 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 13:37:18.538676: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 13:37:18.543624: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 13:37:18.543967: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55ae4e323dc0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 13:37:18.543980: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 13:37:18.545179: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 13:37:18.545191: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 13:37:18.545201: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 13:37:18.545743 140306778916672 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 13:37:18.547445 140306778916672 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 13:37:18.551981 140306778916672 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 13:37:18.559322 140306778916672 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 13:37:18.560355 140306778916672 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 13:37:18.771641 140306778916672 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 13:37:18.787237 140306778916672 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim15
+W0518 13:37:19.346321 140306778916672 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.311917 ValidSqErr: 0.165534 StepSize: 0.273393
+Epoch: 00005 TrainSqErr: 0.068977 ValidSqErr: 0.069649 StepSize: 0.200864
+Epoch: 00010 TrainSqErr: 0.048691 ValidSqErr: 0.051588 StepSize: 0.180583
+Epoch: 00015 TrainSqErr: 0.037425 ValidSqErr: 0.039239 StepSize: 0.182164
+Epoch: 00020 TrainSqErr: 0.029746 ValidSqErr: 0.030200 StepSize: 0.184993
+Epoch: 00025 TrainSqErr: 0.025429 ValidSqErr: 0.026670 StepSize: 0.188305
+Epoch: 00030 TrainSqErr: 0.022766 ValidSqErr: 0.023787 StepSize: 0.192662
+Epoch: 00035 TrainSqErr: 0.020805 ValidSqErr: 0.021492 StepSize: 0.195014
+Epoch: 00040 TrainSqErr: 0.019379 ValidSqErr: 0.019863 StepSize: 0.197347
+Epoch: 00045 TrainSqErr: 0.018390 ValidSqErr: 0.018717 StepSize: 0.198658
+Epoch: 00050 TrainSqErr: 0.017442 ValidSqErr: 0.017749 StepSize: 0.199751
+Epoch: 00055 TrainSqErr: 0.016703 ValidSqErr: 0.017187 StepSize: 0.200062
+Epoch: 00060 TrainSqErr: 0.016102 ValidSqErr: 0.016840 StepSize: 0.200848
+Epoch: 00065 TrainSqErr: 0.015713 ValidSqErr: 0.016160 StepSize: 0.200124
+Epoch: 00070 TrainSqErr: 0.015397 ValidSqErr: 0.015952 StepSize: 0.198860
+Epoch: 00075 TrainSqErr: 0.014997 ValidSqErr: 0.015554 StepSize: 0.199693
+Epoch: 00080 TrainSqErr: 0.014562 ValidSqErr: 0.015010 StepSize: 0.199612
+Epoch: 00085 TrainSqErr: 0.014378 ValidSqErr: 0.015057 StepSize: 0.198923
+Epoch: 00090 TrainSqErr: 0.014080 ValidSqErr: 0.014675 StepSize: 0.200546
+Epoch: 00095 TrainSqErr: 0.013808 ValidSqErr: 0.014142 StepSize: 0.201825
+Epoch: 00100 TrainSqErr: 0.013676 ValidSqErr: 0.014067 StepSize: 0.201783
+Epoch: 00105 TrainSqErr: 0.013606 ValidSqErr: 0.014035 StepSize: 0.201204
+Epoch: 00110 TrainSqErr: 0.013547 ValidSqErr: 0.014066 StepSize: 0.201763
+Epoch: 00115 TrainSqErr: 0.013512 ValidSqErr: 0.014115 StepSize: 0.201610
+Optimization Finished!
+Training takes 116 epochs in 674.166636 secs
+Training loss: 0.013512
+Validation loss: 0.014115
+test_error is:  0.014285309799015522
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.03538963840657898, 'ae_l1_exact': 0.985, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 0.03246843717287096, 'ae_l1_exact_pos': 0.987}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 13:49:33.156213 140528046229312 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 13:49:33.156670: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 13:49:33.160776: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 13:49:33.161071: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55f0bab42530 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 13:49:33.161083: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 13:49:33.161944: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 13:49:33.161954: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 13:49:33.161963: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 13:49:33.162403 140528046229312 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 13:49:33.163928 140528046229312 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 13:49:33.168513 140528046229312 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 13:49:33.175454 140528046229312 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 13:49:33.176341 140528046229312 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 13:49:33.383137 140528046229312 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 13:49:33.399724 140528046229312 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim18
+W0518 13:49:33.969391 140528046229312 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.296977 ValidSqErr: 0.163152 StepSize: 0.283694
+Epoch: 00005 TrainSqErr: 0.062076 ValidSqErr: 0.056802 StepSize: 0.179144
+Epoch: 00010 TrainSqErr: 0.040689 ValidSqErr: 0.040648 StepSize: 0.161034
+Epoch: 00015 TrainSqErr: 0.031917 ValidSqErr: 0.031835 StepSize: 0.157456
+Epoch: 00020 TrainSqErr: 0.025965 ValidSqErr: 0.025920 StepSize: 0.155299
+Epoch: 00025 TrainSqErr: 0.021646 ValidSqErr: 0.021460 StepSize: 0.155607
+Epoch: 00030 TrainSqErr: 0.018529 ValidSqErr: 0.018084 StepSize: 0.155411
+Epoch: 00035 TrainSqErr: 0.016491 ValidSqErr: 0.015928 StepSize: 0.155383
+Epoch: 00040 TrainSqErr: 0.015022 ValidSqErr: 0.014566 StepSize: 0.153970
+Epoch: 00045 TrainSqErr: 0.014005 ValidSqErr: 0.013264 StepSize: 0.155481
+Epoch: 00050 TrainSqErr: 0.013303 ValidSqErr: 0.012564 StepSize: 0.155627
+Epoch: 00055 TrainSqErr: 0.012805 ValidSqErr: 0.012193 StepSize: 0.156524
+Epoch: 00060 TrainSqErr: 0.012387 ValidSqErr: 0.011778 StepSize: 0.155178
+Epoch: 00065 TrainSqErr: 0.012094 ValidSqErr: 0.011540 StepSize: 0.155689
+Epoch: 00070 TrainSqErr: 0.011902 ValidSqErr: 0.011411 StepSize: 0.155465
+Epoch: 00075 TrainSqErr: 0.011763 ValidSqErr: 0.011422 StepSize: 0.156182
+Epoch: 00080 TrainSqErr: 0.011678 ValidSqErr: 0.011249 StepSize: 0.155765
+Epoch: 00085 TrainSqErr: 0.011599 ValidSqErr: 0.011358 StepSize: 0.154497
+Epoch: 00090 TrainSqErr: 0.011452 ValidSqErr: 0.010931 StepSize: 0.155239
+Epoch: 00095 TrainSqErr: 0.011277 ValidSqErr: 0.010662 StepSize: 0.156639
+Epoch: 00100 TrainSqErr: 0.011102 ValidSqErr: 0.010568 StepSize: 0.155963
+Epoch: 00105 TrainSqErr: 0.010990 ValidSqErr: 0.010469 StepSize: 0.155899
+Epoch: 00110 TrainSqErr: 0.010893 ValidSqErr: 0.010439 StepSize: 0.156132
+Epoch: 00115 TrainSqErr: 0.010823 ValidSqErr: 0.010309 StepSize: 0.155488
+Epoch: 00120 TrainSqErr: 0.010683 ValidSqErr: 0.010584 StepSize: 0.152712
+Epoch: 00125 TrainSqErr: 0.010625 ValidSqErr: 0.010480 StepSize: 0.155417
+Optimization Finished!
+Training takes 126 epochs in 749.256644 secs
+Training loss: 0.010625
+Validation loss: 0.010480
+test_error is:  0.011377938153843085
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.04956060788801425, 'ae_l1_exact': 0.9815, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 0.04666829627780941, 'ae_l1_exact_pos': 0.9865}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 14:03:10.183139 140418195621696 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 14:03:10.183607: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 14:03:10.187711: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 14:03:10.188026: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5637586365d0 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 14:03:10.188039: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 14:03:10.189396: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 14:03:10.189413: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 14:03:10.189429: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 14:03:10.190056 140418195621696 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 14:03:10.192449 140418195621696 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 14:03:10.198601 140418195621696 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 14:03:10.206099 140418195621696 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 14:03:10.207063 140418195621696 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 14:03:10.418345 140418195621696 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 14:03:10.436248 140418195621696 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim21
+W0518 14:03:11.008467 140418195621696 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.286033 ValidSqErr: 0.152124 StepSize: 0.254136
+Epoch: 00005 TrainSqErr: 0.056767 ValidSqErr: 0.055585 StepSize: 0.171956
+Epoch: 00010 TrainSqErr: 0.040096 ValidSqErr: 0.040180 StepSize: 0.153020
+Epoch: 00015 TrainSqErr: 0.029875 ValidSqErr: 0.030478 StepSize: 0.144960
+Epoch: 00020 TrainSqErr: 0.024023 ValidSqErr: 0.024951 StepSize: 0.138513
+Epoch: 00025 TrainSqErr: 0.020115 ValidSqErr: 0.020951 StepSize: 0.135677
+Epoch: 00030 TrainSqErr: 0.017299 ValidSqErr: 0.017867 StepSize: 0.135589
+Epoch: 00035 TrainSqErr: 0.015055 ValidSqErr: 0.015698 StepSize: 0.135970
+Epoch: 00040 TrainSqErr: 0.013428 ValidSqErr: 0.014341 StepSize: 0.133325
+Epoch: 00045 TrainSqErr: 0.012219 ValidSqErr: 0.013312 StepSize: 0.137195
+Epoch: 00050 TrainSqErr: 0.011311 ValidSqErr: 0.012111 StepSize: 0.133175
+Epoch: 00055 TrainSqErr: 0.010639 ValidSqErr: 0.011152 StepSize: 0.133382
+Epoch: 00060 TrainSqErr: 0.010066 ValidSqErr: 0.010625 StepSize: 0.132725
+Epoch: 00065 TrainSqErr: 0.009591 ValidSqErr: 0.009882 StepSize: 0.133285
+Epoch: 00070 TrainSqErr: 0.009141 ValidSqErr: 0.009504 StepSize: 0.132764
+Epoch: 00075 TrainSqErr: 0.008751 ValidSqErr: 0.009024 StepSize: 0.134071
+Epoch: 00080 TrainSqErr: 0.008470 ValidSqErr: 0.008682 StepSize: 0.132791
+Epoch: 00085 TrainSqErr: 0.008279 ValidSqErr: 0.008490 StepSize: 0.133334
+Epoch: 00090 TrainSqErr: 0.008006 ValidSqErr: 0.008218 StepSize: 0.130811
+Epoch: 00095 TrainSqErr: 0.007853 ValidSqErr: 0.008166 StepSize: 0.129804
+Epoch: 00100 TrainSqErr: 0.007691 ValidSqErr: 0.008139 StepSize: 0.129349
+Epoch: 00105 TrainSqErr: 0.007564 ValidSqErr: 0.007708 StepSize: 0.129957
+Epoch: 00110 TrainSqErr: 0.007432 ValidSqErr: 0.007646 StepSize: 0.130255
+Epoch: 00115 TrainSqErr: 0.007374 ValidSqErr: 0.007538 StepSize: 0.130645
+Epoch: 00120 TrainSqErr: 0.007342 ValidSqErr: 0.007465 StepSize: 0.129946
+Epoch: 00125 TrainSqErr: 0.007343 ValidSqErr: 0.007644 StepSize: 0.131413
+Epoch: 00130 TrainSqErr: 0.007227 ValidSqErr: 0.007455 StepSize: 0.128194
+Epoch: 00135 TrainSqErr: 0.007202 ValidSqErr: 0.007046 StepSize: 0.129214
+Epoch: 00140 TrainSqErr: 0.007098 ValidSqErr: 0.007299 StepSize: 0.127986
+Epoch: 00145 TrainSqErr: 0.007075 ValidSqErr: 0.006863 StepSize: 0.129595
+Epoch: 00150 TrainSqErr: 0.006894 ValidSqErr: 0.006889 StepSize: 0.130588
+Epoch: 00155 TrainSqErr: 0.006893 ValidSqErr: 0.006806 StepSize: 0.129121
+Epoch: 00160 TrainSqErr: 0.007045 ValidSqErr: 0.007000 StepSize: 0.131364
+Epoch: 00165 TrainSqErr: 0.007049 ValidSqErr: 0.006684 StepSize: 0.130217
+Epoch: 00170 TrainSqErr: 0.006868 ValidSqErr: 0.007874 StepSize: 0.126970
+Epoch: 00175 TrainSqErr: 0.006922 ValidSqErr: 0.006830 StepSize: 0.131154
+Optimization Finished!
+Training takes 176 epochs in 1002.782609 secs
+Training loss: 0.006922
+Validation loss: 0.006830
+test_error is:  0.0070309760669867195
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.005313699116453172, 'ae_l1_exact': 0.999, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 2.2273750892828197e-16, 'ae_l1_exact_pos': 1.0}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 14:21:04.135898 139928043730752 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 14:21:04.136430: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 14:21:04.140724: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 14:21:04.141076: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55772581a030 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 14:21:04.141088: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 14:21:04.142097: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 14:21:04.142112: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 14:21:04.142138: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 14:21:04.142826 139928043730752 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 14:21:04.145456 139928043730752 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 14:21:04.151767 139928043730752 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 14:21:04.158384 139928043730752 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 14:21:04.159286 139928043730752 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 14:21:04.360695 139928043730752 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 14:21:04.379314 139928043730752 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim24
+W0518 14:21:04.919024 139928043730752 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.273268 ValidSqErr: 0.150950 StepSize: 0.261480
+Epoch: 00005 TrainSqErr: 0.056636 ValidSqErr: 0.056591 StepSize: 0.172776
+Epoch: 00010 TrainSqErr: 0.038405 ValidSqErr: 0.040279 StepSize: 0.147459
+Epoch: 00015 TrainSqErr: 0.030696 ValidSqErr: 0.032641 StepSize: 0.142116
+Epoch: 00020 TrainSqErr: 0.025728 ValidSqErr: 0.026833 StepSize: 0.137124
+Epoch: 00025 TrainSqErr: 0.022513 ValidSqErr: 0.023463 StepSize: 0.134539
+Epoch: 00030 TrainSqErr: 0.020437 ValidSqErr: 0.021211 StepSize: 0.133302
+Epoch: 00035 TrainSqErr: 0.019049 ValidSqErr: 0.019776 StepSize: 0.133173
+Epoch: 00040 TrainSqErr: 0.018055 ValidSqErr: 0.018808 StepSize: 0.131731
+Epoch: 00045 TrainSqErr: 0.017253 ValidSqErr: 0.018328 StepSize: 0.133800
+Epoch: 00050 TrainSqErr: 0.016736 ValidSqErr: 0.017378 StepSize: 0.131104
+Epoch: 00055 TrainSqErr: 0.016223 ValidSqErr: 0.016870 StepSize: 0.131874
+Epoch: 00060 TrainSqErr: 0.015862 ValidSqErr: 0.016977 StepSize: 0.128745
+Epoch: 00065 TrainSqErr: 0.015514 ValidSqErr: 0.016043 StepSize: 0.131232
+Epoch: 00070 TrainSqErr: 0.015182 ValidSqErr: 0.015817 StepSize: 0.129213
+Epoch: 00075 TrainSqErr: 0.014904 ValidSqErr: 0.015452 StepSize: 0.130938
+Epoch: 00080 TrainSqErr: 0.014607 ValidSqErr: 0.015188 StepSize: 0.129942
+Epoch: 00085 TrainSqErr: 0.014406 ValidSqErr: 0.014980 StepSize: 0.128773
+Epoch: 00090 TrainSqErr: 0.014186 ValidSqErr: 0.014899 StepSize: 0.128405
+Epoch: 00095 TrainSqErr: 0.014029 ValidSqErr: 0.014812 StepSize: 0.130361
+Epoch: 00100 TrainSqErr: 0.013988 ValidSqErr: 0.015036 StepSize: 0.127421
+Epoch: 00105 TrainSqErr: 0.013897 ValidSqErr: 0.015211 StepSize: 0.126523
+Optimization Finished!
+Training takes 106 epochs in 613.326664 secs
+Training loss: 0.013897
+Validation loss: 0.015211
+test_error is:  0.01479723562176029
+Academic license - for non-commercial use only
+{'ae_l1_err': 2.5311480392388354e-16, 'ae_l1_exact': 1.0, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 2.2873483585977086e-16, 'ae_l1_exact_pos': 1.0}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 14:32:35.892760 140621636052800 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 14:32:35.893256: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 14:32:35.897485: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 14:32:35.897902: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55932d2a1730 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 14:32:35.897914: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 14:32:35.898803: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 14:32:35.898815: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 14:32:35.898839: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 14:32:35.899263 140621636052800 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 14:32:35.900799 140621636052800 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 14:32:35.905256 140621636052800 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 14:32:35.912714 140621636052800 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 14:32:35.913723 140621636052800 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 14:32:36.114945 140621636052800 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 14:32:36.129809 140621636052800 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim27
+W0518 14:32:36.669414 140621636052800 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.249781 ValidSqErr: 0.125908 StepSize: 0.237358
+Epoch: 00005 TrainSqErr: 0.048093 ValidSqErr: 0.050988 StepSize: 0.161017
+Epoch: 00010 TrainSqErr: 0.033932 ValidSqErr: 0.036172 StepSize: 0.141808
+Epoch: 00015 TrainSqErr: 0.026748 ValidSqErr: 0.028668 StepSize: 0.132075
+Epoch: 00020 TrainSqErr: 0.021818 ValidSqErr: 0.023555 StepSize: 0.127416
+Epoch: 00025 TrainSqErr: 0.018230 ValidSqErr: 0.020062 StepSize: 0.125005
+Epoch: 00030 TrainSqErr: 0.014362 ValidSqErr: 0.015429 StepSize: 0.122966
+Epoch: 00035 TrainSqErr: 0.012597 ValidSqErr: 0.013399 StepSize: 0.119249
+Epoch: 00040 TrainSqErr: 0.011347 ValidSqErr: 0.012377 StepSize: 0.116891
+Epoch: 00045 TrainSqErr: 0.010388 ValidSqErr: 0.011148 StepSize: 0.118855
+Epoch: 00050 TrainSqErr: 0.009607 ValidSqErr: 0.010399 StepSize: 0.118570
+Epoch: 00055 TrainSqErr: 0.008931 ValidSqErr: 0.009607 StepSize: 0.117405
+Epoch: 00060 TrainSqErr: 0.008363 ValidSqErr: 0.009096 StepSize: 0.115862
+Epoch: 00065 TrainSqErr: 0.007938 ValidSqErr: 0.008398 StepSize: 0.116182
+Epoch: 00070 TrainSqErr: 0.007665 ValidSqErr: 0.008076 StepSize: 0.115608
+Epoch: 00075 TrainSqErr: 0.007431 ValidSqErr: 0.008173 StepSize: 0.114008
+Epoch: 00080 TrainSqErr: 0.007101 ValidSqErr: 0.007466 StepSize: 0.115781
+Epoch: 00085 TrainSqErr: 0.006918 ValidSqErr: 0.007970 StepSize: 0.112538
+Epoch: 00090 TrainSqErr: 0.006680 ValidSqErr: 0.007085 StepSize: 0.113983
+Epoch: 00095 TrainSqErr: 0.006578 ValidSqErr: 0.007670 StepSize: 0.111446
+Epoch: 00100 TrainSqErr: 0.006363 ValidSqErr: 0.006863 StepSize: 0.112521
+Epoch: 00105 TrainSqErr: 0.006365 ValidSqErr: 0.006576 StepSize: 0.113425
+Epoch: 00110 TrainSqErr: 0.006241 ValidSqErr: 0.006419 StepSize: 0.113512
+Epoch: 00115 TrainSqErr: 0.006180 ValidSqErr: 0.006314 StepSize: 0.112992
+Epoch: 00120 TrainSqErr: 0.005997 ValidSqErr: 0.006481 StepSize: 0.110796
+Epoch: 00125 TrainSqErr: 0.006099 ValidSqErr: 0.006463 StepSize: 0.113630
+Optimization Finished!
+Training takes 126 epochs in 747.225797 secs
+Training loss: 0.006099
+Validation loss: 0.006463
+test_error is:  0.006382765062153339
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.013335611422366606, 'ae_l1_exact': 0.9975, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 2.2895730432952386e-16, 'ae_l1_exact_pos': 1.0}
+(96000, 512)
+(2000, 512)
+(2000, 512)
+W0518 14:46:34.828796 140201728923456 module_wrapper.py:139] From main_channel_cat_saec.py:97: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2020-05-18 14:46:34.829312: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2020-05-18 14:46:34.833446: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 3199980000 Hz
+2020-05-18 14:46:34.833799: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5619e4a47780 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-05-18 14:46:34.833823: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-05-18 14:46:34.834758: W tensorflow/stream_executor/platform/default/dso_loader.cc:55] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2020-05-18 14:46:34.834768: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: UNKNOWN ERROR (303)
+2020-05-18 14:46:34.834776: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (optiplex-5060): /proc/driver/nvidia/version does not exist
+---Dataset: 0, Experiment: 0---
+W0518 14:46:34.835190 140201728923456 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:17: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0518 14:46:34.836718 140201728923456 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:23: The name tf.truncated_normal is deprecated. Please use tf.random.truncated_normal instead.
+
+W0518 14:46:34.841204 140201728923456 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:28: The name tf.sparse_tensor_dense_matmul is deprecated. Please use tf.sparse.sparse_dense_matmul instead.
+
+W0518 14:46:34.847777 140201728923456 deprecation.py:323] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:40: batch_normalization (from tensorflow.python.layers.normalization) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use keras.layers.BatchNormalization instead.  In particular, `tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)` should not be used (consult the `tf.keras.layers.batch_normalization` documentation).
+W0518 14:46:34.849154 140201728923456 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/layers/normalization.py:327: Layer.apply (from tensorflow.python.keras.engine.base_layer) is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `layer.__call__` method instead.
+W0518 14:46:35.051750 140201728923456 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:91: The name tf.train.GradientDescentOptimizer is deprecated. Please use tf.compat.v1.train.GradientDescentOptimizer instead.
+
+W0518 14:46:35.066529 140201728923456 deprecation.py:323] From /home/lab2255/.local/lib/python3.6/site-packages/tensorflow_core/python/ops/math_grad.py:1375: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+Start training......emb_dim30
+W0518 14:46:35.606786 140201728923456 module_wrapper.py:139] From /home/lab2255/Mycode/CSIC/models/model_l1saec.py:107: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+Epoch: 00000 TrainSqErr: 0.250480 ValidSqErr: 0.114545 StepSize: 0.233702
+Epoch: 00005 TrainSqErr: 0.043126 ValidSqErr: 0.044231 StepSize: 0.159319
+Epoch: 00010 TrainSqErr: 0.028226 ValidSqErr: 0.029552 StepSize: 0.138423
+Epoch: 00015 TrainSqErr: 0.021423 ValidSqErr: 0.022566 StepSize: 0.127654
+Epoch: 00020 TrainSqErr: 0.017452 ValidSqErr: 0.018744 StepSize: 0.120566
+Epoch: 00025 TrainSqErr: 0.014823 ValidSqErr: 0.016216 StepSize: 0.118641
+Epoch: 00030 TrainSqErr: 0.012917 ValidSqErr: 0.013974 StepSize: 0.114642
+Epoch: 00035 TrainSqErr: 0.011494 ValidSqErr: 0.012500 StepSize: 0.111702
+Epoch: 00040 TrainSqErr: 0.010526 ValidSqErr: 0.011088 StepSize: 0.111104
+Epoch: 00045 TrainSqErr: 0.009644 ValidSqErr: 0.011175 StepSize: 0.114003
+Epoch: 00050 TrainSqErr: 0.008846 ValidSqErr: 0.009388 StepSize: 0.111371
+Epoch: 00055 TrainSqErr: 0.008401 ValidSqErr: 0.008605 StepSize: 0.110104
+Epoch: 00060 TrainSqErr: 0.007953 ValidSqErr: 0.007931 StepSize: 0.108382
+Epoch: 00065 TrainSqErr: 0.007398 ValidSqErr: 0.007880 StepSize: 0.109789
+Epoch: 00070 TrainSqErr: 0.007192 ValidSqErr: 0.007438 StepSize: 0.105867
+Epoch: 00075 TrainSqErr: 0.006890 ValidSqErr: 0.006915 StepSize: 0.106429
+Epoch: 00080 TrainSqErr: 0.006736 ValidSqErr: 0.006496 StepSize: 0.106831
+Epoch: 00085 TrainSqErr: 0.006448 ValidSqErr: 0.006275 StepSize: 0.107252
+Epoch: 00090 TrainSqErr: 0.006123 ValidSqErr: 0.006692 StepSize: 0.108533
+Epoch: 00095 TrainSqErr: 0.006178 ValidSqErr: 0.006229 StepSize: 0.107533
+Epoch: 00100 TrainSqErr: 0.005998 ValidSqErr: 0.005967 StepSize: 0.104809
+Epoch: 00105 TrainSqErr: 0.005876 ValidSqErr: 0.005752 StepSize: 0.105403
+Epoch: 00110 TrainSqErr: 0.005670 ValidSqErr: 0.005937 StepSize: 0.107037
+Epoch: 00115 TrainSqErr: 0.005615 ValidSqErr: 0.005491 StepSize: 0.105173
+Epoch: 00120 TrainSqErr: 0.005516 ValidSqErr: 0.007686 StepSize: 0.100527
+Epoch: 00125 TrainSqErr: 0.005403 ValidSqErr: 0.006478 StepSize: 0.108073
+Optimization Finished!
+Training takes 126 epochs in 761.727308 secs
+Training loss: 0.005403
+Validation loss: 0.006478
+test_error is:  0.0067622150294482705
+Academic license - for non-commercial use only
+{'ae_l1_err': 0.004259565144982737, 'ae_l1_exact': 0.999, 'ae_l1_solve': 1.0, 'ae_l1_err_pos': 2.399204039866505e-16, 'ae_l1_exact_pos': 1.0}
+
