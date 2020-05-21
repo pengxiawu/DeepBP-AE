@@ -27,9 +27,7 @@ You can prepare your own dataset by following :
 
 1. Generate the spatial channels following the instruction on [DeepMIMO](https://www.deepmimo.net/). The parameters are given in the paper "Acquiring Measurement Matrices via Deep Basis Pursuit for Sparse Channel Estimation in mmWave Massive MIMO Systems". Alternatively, you can skip this step 1 and directly download our used dataset from [this link](https://drive.google.com/file/d/1Ccwh8XdW3AXNMQ62j6D5Ndd4qRVxTbja/view?usp=sharing).
 
-2. Access all generated spatial channel vectors and save as a MAT-file. This can be done by running the Matlab Script "./datasets/access_channels.m".
-
-3. Obtain the beamspace channel vectors and save as a MAT-file. by running the Matlab Script "./datasets/beamspace_channels.m". 
+2. Access all generated spatial channel vectors, transform and save as sparse beamspace channel vectors by running the Matlab Script "./datasets/deepMIMO_beamspace_channels.m".
 
 ## Built With
 
