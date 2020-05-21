@@ -15,7 +15,7 @@ flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
 flags.DEFINE_integer("num_samples", 40000, "Number of total samples [10000]")
 flags.DEFINE_integer("decoder_num_steps", 10,
                      "Depth of the decoder network [10]")
-flags.DEFINE_integer("batch_size", 128, "Batch size [128]")
+flags.DEFINE_integer("batch_size", 256, "Batch size [128]")
 flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD [0.01]")
 flags.DEFINE_integer("max_training_epochs", 1000,
                      "Maximum number of training epochs [2e4]")
@@ -26,9 +26,9 @@ flags.DEFINE_integer("validation_interval", 5,
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1sae_cat0/",
+flags.DEFINE_string("checkpoint_dir", "../results/20200519_deepMIMOdataset_sae_cat0/",
                     "Directory name to save the checkpoints \
-                    [RES/cl_res/]")
+                    [../results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,
@@ -115,14 +115,14 @@ for dataset_i in range(num_random_dataset):
         file_path = checkpoint_dir + file_name
         np.save(file_path, learned_matrix)
         Y = X_test.dot(learned_matrix)
-        l1ae_l1_err, l1ae_l1_exact, l1ae_l1_solve = \
+        sae_lp_err, sae_lp_exact, sae_lp_solve = \
             LP_BP_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
 
 
         res = {}
-        res['ae_l1_err'] = l1ae_l1_err
-        res['ae_l1_exact'] = l1ae_l1_exact
-        res['ae_l1_solve'] = l1ae_l1_solve
+        res['sae_lp_err'] = sae_lp_err
+        res['sae_lp_exact'] = sae_lp_exact
+        res['sae_lp_solve'] = sae_lp_solve
         merge_dict(results_dict, res)
         print(res)
 

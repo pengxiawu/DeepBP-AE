@@ -10,26 +10,25 @@ import tensorflow as tf
 flags = tf.app.flags
 
 flags.DEFINE_string("decoder_type", "GAE", "choose one from [GAE, GAEC, SAE, SAEC]")
-flags.DEFINE_string("decoder_type", "GAE", "choose one from [GAE, GAEC, SAE, SAEC]")
 flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
-flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
+flags.DEFINE_integer("emb_dim", 15, "Number of measurements [15]")
 flags.DEFINE_integer("num_samples", 40000, "Number of total samples [10000]")
 flags.DEFINE_integer("decoder_num_steps", 10,
                      "Depth of the decoder network [10]")
 flags.DEFINE_integer("batch_size", 256, "Batch size [128]")
 flags.DEFINE_float("learning_rate", 0.01, "Learning rate for SGD [0.01]")
 flags.DEFINE_integer("max_training_epochs", 1000,
-                     "Maximum number of training epochs [2e4]")
+                     "Maximum number of training epochs")
 flags.DEFINE_integer("display_interval", 5,
-                     "Print the training info every [100] epochs")
+                     "Print the training info every [5] epochs")
 flags.DEFINE_integer("validation_interval", 5,
-                     "Compute validation loss every [10] epochs")
+                     "Compute validation loss every [5] epochs")
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
-                      does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1gae_cat0/",
+                      does not improve for [1] validation_intervals")
+flags.DEFINE_string("checkpoint_dir", "../results/20200519_deepMIMOdataset_gae_cat0/",
                     "Directory name to save the checkpoints \
-                    [RES/cl_res/]")
+                    [../results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,
@@ -115,15 +114,16 @@ for dataset_i in range(num_random_dataset):
                     % (input_dim, decoder_num_steps, emb_dim)
         file_path = checkpoint_dir + file_name
         np.save(file_path, learned_matrix)
+
         Y = X_test.dot(learned_matrix)
-        l1ae_l1_err, l1ae_l1_exact, l1ae_l1_solve = \
+        gae_lp_err, gae_lp_exact, gae_lp_solve = \
             LP_BP_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
 
 
         res = {}
-        res['ae_l1_err'] = l1ae_l1_err
-        res['ae_l1_exact'] = l1ae_l1_exact
-        res['ae_l1_solve'] = l1ae_l1_solve
+        res['gae_lp_err'] = gae_lp_err
+        res['gae_lp_exact'] = gae_lp_exact
+        res['gae_lp_solve'] = gae_lp_solve
         merge_dict(results_dict, res)
         print(res)
 

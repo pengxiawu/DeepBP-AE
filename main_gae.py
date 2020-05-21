@@ -25,7 +25,7 @@ flags.DEFINE_integer("validation_interval", 5,
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
                       does not improve for [1] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1gae/",
+flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_gae/",
                     "Directory name to save the checkpoints [results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
@@ -100,19 +100,19 @@ for dataset_i in range(num_random_dataset):
         file_path = checkpoint_dir + file_name
         np.save(file_path, learned_matrix)
         Y = X_test.dot(learned_matrix)
-        l1ae_l1_err, l1ae_l1_exact, l1ae_l1_solve = \
+        gae_lp_err, gae_lp_exact, gae_lp_solve = \
             LP_BP_avg_err(np.transpose(learned_matrix), Y, X_test, use_pos=False)
 
 
         res = {}
-        res['l1ae_l1_err'] = l1ae_l1_err
-        res['l1ae_l1_exact'] = l1ae_l1_exact
-        res['l1ae_l1_solve'] = l1ae_l1_solve
+        res['gae_lp_err'] = gae_lp_err
+        res['gae_lp_exact'] = gae_lp_exact
+        res['gae_lp_solve'] = gae_lp_solve
         merge_dict(results_dict, res)
         print(res)
 
 # save results_dict
-file_name = ('res'+'input_%d_'+'depth_%d_'+'emb_%02d.npy') \
+file_name = ('res_'+'input_%d_'+'depth_%d_'+'emb_%02d.npy') \
             % (input_dim, decoder_num_steps, emb_dim)
 file_path = checkpoint_dir + file_name
 np.save(file_path, results_dict)

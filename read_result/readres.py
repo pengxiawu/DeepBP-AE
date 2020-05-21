@@ -1,7 +1,7 @@
 import os
 import numpy as np
 
-res = "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1min_random_cat"
+res = "../results/20200519_deepMIMOdataset_lp_random_cat0"
 
 os.listdir(res)
 

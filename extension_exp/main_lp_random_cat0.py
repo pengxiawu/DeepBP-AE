@@ -11,10 +11,10 @@ flags = tf.app.flags
 
 flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
-flags.DEFINE_integer("num_samples", 50000, "Number of total samples [10000]")
-flags.DEFINE_string("checkpoint_dir", "./results/20200517_deepMIMOdataset_l1min_random_cat0/",
+flags.DEFINE_integer("num_samples", 40000, "Number of total samples [40000]")
+flags.DEFINE_string("checkpoint_dir", "../results/20200519_deepMIMOdataset_lp_random_cat0/",
                     "Directory name to save the checkpoints \
-                    [RES/cl_res/]")
+                    [../results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,
@@ -55,17 +55,17 @@ def l1_min(X, input_dim, emb_dim):
         X: csr_matrix, shape=(num_sample, input_dim)
     """
     # random Gaussian matrix
-    G = np.random.randn(input_dim, emb_dim)/np.sqrt(emb_dim)
+    G = np.random.randn(input_dim, emb_dim)/np.sqrt(input_dim)
     np.save(checkpoint_dir+'Gaussian_{}x{}.npy'.format(emb_dim, input_dim), G)
     Y = X.dot(G) # sparse.csr_matrix.dot
     g_err, g_exact, _ = LP_BP_avg_err(np.transpose(G), Y, X, use_pos=False)
     g_err_pos, g_exact_pos, _ = LP_BP_avg_err(np.transpose(G), Y, X, use_pos=True)
 
     res = {}
-    res['l1_g_err'] = g_err
-    res['l1_g_exact'] = g_exact
-    res['l1_g_err_pos'] = g_err_pos
-    res['l1_g_exact_pos'] = g_exact_pos
+    res['lp_gaussian_err'] = g_err
+    res['lp_gaussian_exact'] = g_exact
+    res['lp_gaussian_err_pos'] = g_err_pos
+    res['lp_gaussian_exact_pos'] = g_exact_pos
     return res
 
 
@@ -82,17 +82,17 @@ for dataset_i in range(num_random_dataset):
 
     res = {}
     # l1 minimization
-    print("Start l1-min......")
+    print("Start lP_BP......")
     t0 = time()
     res = l1_min(X_test, input_dim, emb_dim)
     t1 = time()
-    print("L1-minimization takes {} sec.".format(t1 - t0))
+    print("lP_BP takes {} sec.".format(t1 - t0))
     merge_dict(results_dict, res)
     print(res)
 
 
 # save results_dict
-file_name = ('resl1min_'+'input_%d_'+'emb_%02d.npy') \
+file_name = ('res_'+'input_%d_'+'emb_%02d.npy') \
             % (input_dim, emb_dim)
 file_path = checkpoint_dir + file_name
 np.save(file_path, results_dict)
