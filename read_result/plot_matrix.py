@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import os
 from sklearn.preprocessing import normalize
 
-matrix_path = "/home/lab2255/Myresult/csic_res/RES/res_200219_l1sae_posnegcat/"
+matrix_path = "/home/lab2255/Myresult/csic_res/20200519_deepMIMOdataset_l1sae_cat0"
 matrix_name = "matrixinput_512_depth_10_emb_15"
 matrix = np.load(os.path.join(matrix_path, matrix_name)+".npy")
 # matrix = normalize(matrix, axis=0)

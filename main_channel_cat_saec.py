@@ -1,6 +1,6 @@
 from __future__ import division
 from models.model_l1saec import L1AE
-from utils.my_datasets import datasplit
+from utils.deepMIMO_access import datasplit
 from utils.utils import l1_min_avg_err
 from scipy import sparse
 import os
@@ -10,7 +10,7 @@ import tensorflow as tf
 flags = tf.app.flags
 
 flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
-flags.DEFINE_integer("emb_dim", 6, "Number of measurements [10]")
+flags.DEFINE_integer("emb_dim", 9, "Number of measurements [10]")
 flags.DEFINE_integer("num_samples", 50000, "Number of total samples [10000]")
 flags.DEFINE_integer("decoder_num_steps", 15,
                      "Depth of the decoder network [10]")
@@ -25,13 +25,13 @@ flags.DEFINE_integer("validation_interval", 5,
 flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
                       does not improve for [5] validation_intervals")
-flags.DEFINE_string("checkpoint_dir", "/home/lab2255/Myresult/csic_res/20200517_deepMIMOdataset_l1saec(redo)/",
+flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_l1saec/",
                     "Directory name to save the checkpoints \
                     [RES/cl_res/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,
-                     "Number of experiments for each dataset [1]")
+                     "Number of experiments for each datasets [1]")
 
 FLAGS = flags.FLAGS
 
