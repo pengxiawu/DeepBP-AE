@@ -6,7 +6,7 @@ from sklearn.preprocessing import normalize
 
 
 """load datasets"""
-matdata1 ='../datasets/deepMIMO_dataset_2020May15/H_beam_sparsity_syn3.mat'
+matdata1 ='../datasets/deepMIMO_dataset/H_beam_sparsity_syn3.mat'
 dataname1='H_beam_sparsity_syn'
 matdata1 = sio.loadmat(matdata1)
 
