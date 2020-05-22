@@ -26,7 +26,7 @@ flags.DEFINE_integer("max_steps_not_improve", 1,
                      "stop training when the validation loss \
                       does not improve for [1] validation_intervals")
 flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_gae/",
-                    "Directory name to save the checkpoints [results/]")
+                    "Directory name to save the checkpoints [./results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,

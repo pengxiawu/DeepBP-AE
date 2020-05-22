@@ -12,7 +12,7 @@ flags = tf.app.flags
 flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 15, "Number of measurements [15]")
 flags.DEFINE_integer("num_samples", 50000, "Number of total samples [50000]")
-flags.DEFINE_string("checkpoint_dir", "./results/20200517_deepMIMOdataset_lp_random_cat/",
+flags.DEFINE_string("checkpoint_dir", "./results/20200519_deepMIMOdataset_lp_random_cat/",
                     "Directory name to save the checkpoints \
                     [./results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
