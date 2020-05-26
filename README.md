@@ -29,7 +29,7 @@ You can prepare your own dataset by following :
 
 2. Access all generated spatial channel vectors, transform and save as sparse beamspace channel vectors by running the Matlab Script "./datasets/deepMIMO_beamspace_channels.m".
 
-3. Alternatively, you can skip this step 1 and directly download our used dataset from [our upload on IEEEDataPort](https://ieee-dataport.org/open-access/beamspace-channel-dataset-mmwave-massive-mimo).
+3. Alternatively, you can skip this step 1 and directly download our used dataset from [our upload dataset on IEEEDataPort](https://ieee-dataport.org/open-access/beamspace-channel-dataset-mmwave-massive-mimo).
 
 ## Built With
 
