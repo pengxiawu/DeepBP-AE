@@ -75,13 +75,13 @@ def lp_bp_pos(A, y, true_x):
 
 def LP_BP_avg_err(A, Y, true_X, use_pos=False, eps=1e-8):
     """
-    Run l1_min for each sample, and compute the RMSE.
+    Run linear programming (LP) for each sample, and compute the RMSE.
     true_X is a 2D csr_matrix with shape=(num_sample, input_dim).
     """
     #global Res
     num_sample = Y.shape[0]
     num_exact = 0  # number of samples that are exactly recovered
-    num_solved = num_sample  # number of samples that successfully runs l1_min
+    num_solved = num_sample  # number of samples that successfully runs LP
     err = 0
     for i in range(num_sample):
         y = Y[i, :].reshape(-1,)

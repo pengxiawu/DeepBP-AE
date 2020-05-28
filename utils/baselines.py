@@ -58,24 +58,24 @@ def LP_BP(X, input_dim, emb_dim):
     p_err_pos, p_exact_pos, _ = LP_BP_avg_err(np.transpose(P), Y, X, use_pos=True)
 
     res = {}
-    res['l1_g_err'] = g_err
-    res['l1_g_exact'] = g_exact
-    res['l1_g_err_pos'] = g_err_pos
-    res['l1_g_exact_pos'] = g_exact_pos
-    res['l1_s_err'] = s_err
-    res['l1_s_exact'] = s_exact
-    res['l1_s_err_pos'] = s_err_pos
-    res['l1_s_exact_pos'] = s_exact_pos
-    res['l1_b_err'] = b_err
-    res['l1_b_exact'] = b_exact
-    res['l1_b_err_pos'] = b_err_pos
-    res['l1_b_exact_pos'] = b_exact_pos
-    res['l1_f_err'] = f_err
-    res['l1_f_exact'] = f_exact
-    res['l1_f_err_pos'] = f_err_pos
-    res['l1_f_exact_pos'] = f_exact_pos
-    res['l1_p_err'] = p_err
-    res['l1_p_exact'] = p_exact
-    res['l1_p_err_pos'] = p_err_pos
-    res['l1_p_exact_pos'] = p_exact_pos
+    res['lp_g_err'] = g_err
+    res['lp_g_exact'] = g_exact
+    res['lp_g_err_pos'] = g_err_pos
+    res['lp_g_exact_pos'] = g_exact_pos
+    res['lp_s_err'] = s_err
+    res['lp_s_exact'] = s_exact
+    res['lp_s_err_pos'] = s_err_pos
+    res['lp_s_exact_pos'] = s_exact_pos
+    res['lp_b_err'] = b_err
+    res['lp_b_exact'] = b_exact
+    res['lp_b_err_pos'] = b_err_pos
+    res['lp_b_exact_pos'] = b_exact_pos
+    res['lp_f_err'] = f_err
+    res['lp_f_exact'] = f_exact
+    res['lp_f_err_pos'] = f_err_pos
+    res['lp_f_exact_pos'] = f_exact_pos
+    res['lp_p_err'] = p_err
+    res['lp_p_exact'] = p_exact
+    res['lp_p_err_pos'] = p_err_pos
+    res['lp_p_exact_pos'] = p_exact_pos
     return res

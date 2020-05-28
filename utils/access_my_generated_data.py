@@ -1,8 +1,8 @@
 from __future__ import division
+from sklearn.preprocessing import normalize
 import scipy.sparse as sp
 import scipy.io as sio
 import numpy as np
-from sklearn.preprocessing import normalize
 
 
 """load datasets"""

@@ -13,8 +13,7 @@ flags.DEFINE_integer('input_dim', 512, "Input dimension [512]")
 flags.DEFINE_integer("emb_dim", 15, "Number of measurements [10]")
 flags.DEFINE_integer("num_samples", 40000, "Number of total samples [40000]")
 flags.DEFINE_string("checkpoint_dir", "../results/20200519_deepMIMOdataset_lp_random_cat0/",
-                    "Directory name to save the checkpoints \
-                    [../results/]")
+                    "Directory name to save the checkpoints [../results/]")
 flags.DEFINE_integer("num_random_dataset", 1,
                      "Number of random read_result [1]")
 flags.DEFINE_integer("num_experiment", 1,
@@ -49,7 +48,7 @@ def merge_dict(a, b):
             a[k] = [b[k]]
 
 
-def l1_min(X, input_dim, emb_dim):
+def lp_random(X, input_dim, emb_dim):
     """
     Args:
         X: csr_matrix, shape=(num_sample, input_dim)
@@ -84,7 +83,7 @@ for dataset_i in range(num_random_dataset):
     # l1 minimization
     print("Start lP_BP......")
     t0 = time()
-    res = l1_min(X_test, input_dim, emb_dim)
+    res = lp_random(X_test, input_dim, emb_dim)
     t1 = time()
     print("lP_BP takes {} sec.".format(t1 - t0))
     merge_dict(results_dict, res)
@@ -92,7 +91,6 @@ for dataset_i in range(num_random_dataset):
 
 
 # save results_dict
-file_name = ('res_'+'input_%d_'+'emb_%02d.npy') \
-            % (input_dim, emb_dim)
+file_name = ('res_'+'input_%d_'+'emb_%02d.npy') % (input_dim, emb_dim)
 file_path = checkpoint_dir + file_name
 np.save(file_path, results_dict)

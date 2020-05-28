@@ -68,7 +68,6 @@ for dataset_i in range(num_random_dataset):
     print(res)
 
 # save results_dict
-file_name = ('res_'+'input_%d_'+'emb_%02d.npy') \
-            % (input_dim, emb_dim)
+file_name = ('res_'+'input_%d_'+'emb_%02d.npy') %(input_dim, emb_dim)
 file_path = checkpoint_dir + file_name
 np.save(file_path, results_dict)

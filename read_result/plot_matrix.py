@@ -1,7 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
 import os
-from sklearn.preprocessing import normalize
 
 # """draw data-driven matrices"""
 # matrix_path = "../results/20200519_deepMIMOdataset_sae_cat0"
