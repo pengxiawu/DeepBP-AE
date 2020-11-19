@@ -1,6 +1,6 @@
 # DeepBP-AE
 
-This is the Tensorflow implementation of paper "Acquiring Measurement Matrices via Deep Basis Persuit for Sparse Channel Estimation in mmWave Massive MIMO Systems" (currently under review).
+This is the Tensorflow implementation of paper "[Acquiring Measurement Matrices via Deep Basis Persuit for Sparse Channel Estimation in mmWave Massive MIMO Systems]" (https://arxiv.org/abs/2007.05177).
 
 
 ## Prerequisites
